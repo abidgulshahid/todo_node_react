@@ -13,5 +13,5 @@ export function delete_todo(id){
 }
 
 export function update_todo(id,task_status){
-    return http.put(`/update/${id}`,task_status)
+    return http.put(`/${id}`,task_status)
 }

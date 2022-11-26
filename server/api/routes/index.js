@@ -7,6 +7,6 @@ const router = express.Router();
 
 router.post("/create",task_create.todo_create);
 router.get('/get_todo',get_todo.get_todo);
-router.put("/update/:id",todo_done.update_todo);
+router.put("/:id",todo_done.update_todo);
 router.delete("/:id", delete_todo.delete_todo);
 module.exports = router;

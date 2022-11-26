@@ -17,13 +17,8 @@ const AddTodo = () => {
     };
 
     const handleSubmit = (event) => {
-        try {
-           add_todo({task_name:create_todo,task_description:todo_description})
-            get_todo()
-        }
-        catch (e) {
-            console.log(e)
-        }
+        add_todo({task_name:create_todo,task_description:todo_description})
+        return get_todo()
     };
     return (
             <div>

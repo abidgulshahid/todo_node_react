@@ -22,12 +22,12 @@ const TodoList = () => {
 
     const deleteTodo = async (id) => {
         await delete_todo(id)
-        getTodo();
+        return getTodo();
     }
 
     const updateTodo = async (id,task_status) => {
         await update_todo(id,{task_status})
-        get_todo()
+        return getTodo()
     }
 
 
