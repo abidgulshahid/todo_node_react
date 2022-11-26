@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const router = require("../../todo_appp/server/api/routes/index");
+const router = require("../server/api/routes/index");
 const connection = require("../server/api/Config/config")
 const app = express();
 connection.database_config()
