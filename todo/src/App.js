@@ -23,6 +23,8 @@ function App() {
             <Col >
 
         <AddTodo/>
+                <br></br>
+                <br></br>
         <TodoList />
             </Col>
         </Row>

@@ -10,20 +10,23 @@ const TodoList = () => {
         getTodo();
     }, []);
 
+    const handleChange = (e)  =>{
+        let isChecked = e.target.checked;
+        return isChecked
+    }
+
     const getTodo = async () => {
         const response = await get_todo()
         setTodoList(response.data);
     }
 
     const deleteTodo = async (id) => {
-        console.log('id')
         await delete_todo(id)
         getTodo();
     }
 
-    const updateTodo = async (id) => {
-        console.log("UPDATING")
-        await update_todo(id)
+    const updateTodo = async (id,task_status) => {
+        await update_todo(id,{task_status})
         get_todo()
     }
 
@@ -47,11 +50,12 @@ const TodoList = () => {
                         <td>{todos.task_name}</td>
                         <td>{todos.task_description}</td>
                         <td>
-                            <Form>
+                            <Form >
                                 <Form.Check
                                     id={todos._id}
                                     checked={todos.task_status}
-                                    onChange={() => updateTodo(todos._id)}
+                                    value={todos.task_status}
+                                    onChange={(e) => updateTodo(todos._id,handleChange(e))}
                                 />
                             </Form>
 

@@ -17,7 +17,6 @@ const AddTodo = () => {
     };
 
     const handleSubmit = (event) => {
-        event.preventDefault();
         try {
            add_todo({task_name:create_todo,task_description:todo_description})
             get_todo()

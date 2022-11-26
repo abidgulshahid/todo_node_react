@@ -12,6 +12,6 @@ export function delete_todo(id){
     return http.delete(`/${id}`);
 }
 
-export function update_todo(id){
-    return http.put(`/update/${id}`)
+export function update_todo(id,task_status){
+    return http.put(`/update/${id}`,task_status)
 }

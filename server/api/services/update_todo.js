@@ -1,8 +1,7 @@
 const todo_table = require("../utils/schema");
 
 exports.update_todo = async  (request, response) => {
-    console.log("HELLO WORLD")
-    task_status = {"task_status":true}
+    task_status = {"task_status":request.body.task_status}
      try {
         var done_todo = await todo_table.findByIdAndUpdate(
                 {_id:request.params.id},
