@@ -3,3 +3,4 @@
 to be added:
   login/registration
   total todos
+  to host on heroku
