@@ -7,6 +7,11 @@ connection.database_config()
 PORT = process.env.PORT || 5000;
 app.use(express.json());
 
+var corsOptions = {
+    origin: "http://localhost:3000"
+};
+
+app.use(cors(corsOptions));
 app.get("/", function (req, res) {
     res.send("API is up and running")
 });
