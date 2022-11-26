@@ -11,3 +11,7 @@ export function add_todo(todo_list){
 export function delete_todo(id){
     return http.delete(`/${id}`);
 }
+
+export function update_todo(id){
+    return http.put(`/update/${id}`)
+}

@@ -1,9 +1,10 @@
 import {useState, useEffect} from 'react'
-import {get_todo,delete_todo} from "../utils/server"
+import {get_todo, delete_todo, update_todo} from "../utils/server"
+import Form from 'react-bootstrap/Form';
 
 
 const TodoList = () => {
-    const [products, setProduct] = useState([]);
+    const [todo_list, setTodoList] = useState([]);
 
     useEffect(() => {
         getTodo();
@@ -11,7 +12,7 @@ const TodoList = () => {
 
     const getTodo = async () => {
         const response = await get_todo()
-        setProduct(response.data);
+        setTodoList(response.data);
     }
 
     const deleteTodo = async (id) => {
@@ -20,24 +21,45 @@ const TodoList = () => {
         getTodo();
     }
 
+    const updateTodo = async (id) => {
+        console.log("UPDATING")
+        await update_todo(id)
+        get_todo()
+    }
+
+
     return (
         <div>
             <table className="table is-striped is-fullwidth">
                 <thead>
                 <tr>
                     <th>No</th>
-                    <th>Title</th>
+                    <th>TODO</th>
+                    <th>TODO Description</th>
+                    <th>Done</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
-                {products.map((product, index) => (
-                    <tr key={product.id}>
+                {todo_list.map((todos, index) => (
+                    <tr key={todos.id}>
                         <td>{index + 1}</td>
-                        <td>{product.task_name}</td>
+                        <td>{todos.task_name}</td>
+                        <td>{todos.task_description}</td>
                         <td>
-                            <button onClick={() => deleteTodo(product._id)}
-                                    className="button is-small is-danger">Delete
+                            <Form>
+                                <Form.Check
+                                    id={todos._id}
+                                    checked={todos.task_status}
+                                    onChange={() => updateTodo(todos._id)}
+                                />
+                            </Form>
+
+                        </td>
+                        <td>
+
+                            <button onClick={() => deleteTodo(todos._id)}
+                                className="btn btn-danger">Delete
                             </button>
 
                         </td>

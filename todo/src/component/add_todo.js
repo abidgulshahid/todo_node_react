@@ -6,15 +6,20 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 const AddTodo = () => {
     const [create_todo, setTodo] = useState([]);
+    const [todo_description, setTodoDescription] = useState([]);
 
     const handleText = (event) => {
         setTodo(event.target.value);
     };
 
+    const handledescriptionn = (event) => {
+        setTodoDescription(event.target.value);
+    };
+
     const handleSubmit = (event) => {
         event.preventDefault();
         try {
-           add_todo({task_name:create_todo})
+           add_todo({task_name:create_todo,task_description:todo_description})
             get_todo()
         }
         catch (e) {
@@ -35,7 +40,19 @@ const AddTodo = () => {
                         onChange={handleText}
                     />
                     <br></br>
-                    <Button variant="danger" type="submit">
+                    <Form.Label htmlFor="todo">Enter Your Todo  Description</Form.Label>
+
+                    <Form.Control
+                        type="text"
+                        id="text"
+                        aria-describedby="passwordHelpBlock"
+                        placeholder="Enter Your Todo Description"
+                        value={todo_description}
+                        onChange={handledescriptionn}
+                    />
+                    <br></br>
+
+                        <Button variant="success"size="lg" type="submit">
                         Save
                     </Button>
                 </Form>
