@@ -9,5 +9,5 @@ export function add_todo(todo_list){
 }
 
 export function delete_todo(id){
-    return http.delete(`/delete/${id}`);
+    return http.delete(`/${id}`);
 }

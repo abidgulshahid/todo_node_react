@@ -1,23 +1,23 @@
 import {useState, useEffect} from 'react'
-import axios from "axios";
-import {Link} from "react-router-dom";
+import {get_todo,delete_todo} from "../utils/server"
 
-const ProductList = () => {
+
+const TodoList = () => {
     const [products, setProduct] = useState([]);
 
     useEffect(() => {
-        getProducts();
+        getTodo();
     }, []);
 
-    const getProducts = async () => {
-        const response = await axios.get('http://localhost:5000/api/get_todo');
+    const getTodo = async () => {
+        const response = await get_todo()
         setProduct(response.data);
     }
 
-    const deleteProduct = async (id) => {
+    const deleteTodo = async (id) => {
         console.log('id')
-        await axios.delete(`http://localhost:5000/api/${id}`);
-        getProducts();
+        await delete_todo(id)
+        getTodo();
     }
 
     return (
@@ -36,7 +36,7 @@ const ProductList = () => {
                         <td>{index + 1}</td>
                         <td>{product.task_name}</td>
                         <td>
-                            <button onClick={() => deleteProduct(product._id)}
+                            <button onClick={() => deleteTodo(product._id)}
                                     className="button is-small is-danger">Delete
                             </button>
 
@@ -50,4 +50,4 @@ const ProductList = () => {
     )
 }
 
-export default ProductList
+export default TodoList
