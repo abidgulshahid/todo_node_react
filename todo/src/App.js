@@ -5,16 +5,27 @@ import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 //import NavDropdown from 'react-bootstrap/NavDropdown';
 import Form from 'react-bootstrap/Form';
+import { Route } from "react-router-dom";
 import * as React from 'react';
 import Button from 'react-bootstrap/Button';
-import {add_todo} from "./utils/server"
-import ListGroup from 'react-bootstrap/ListGroup';
+import {add_todo,get_todo} from "./utils/server"
+import ProductList from "./component/get_todo_list"
 
 
 function App() {
-    var insert_todo = ''
+//    const [products, setProduct] = React.useState([]);
     const [text_area, setTextArea] = React.useState('');
 
+    React.useEffect(() => {
+        get_todo();
+        }, []);
+
+//    const getTodo = async => {
+//        const response = get_todo()
+//        setProduct(response.data)
+//        return response.data
+//
+//    }
     const handleText = (event) => {
         setTextArea(event.target.value);
     };
@@ -23,6 +34,7 @@ function App() {
         event.preventDefault();
         var insert_todo = []
         const todo_input  = text_area
+
 
         try {
             const data =  add_todo({task_name:todo_input})
@@ -60,13 +72,9 @@ function App() {
         </Button>
         </Form>
 
-        <ListGroup>
-            <ListGroup.Item>Cras justo odio</ListGroup.Item>
-            <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-            <ListGroup.Item>Morbi leo risus</ListGroup.Item>
-            <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
-            <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
-        </ListGroup>
+
+                <ProductList />
+
     </div>
   );
 }
