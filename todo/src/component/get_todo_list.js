@@ -1,13 +1,16 @@
 import {useState, useEffect} from 'react'
-import {get_todo, delete_todo, update_todo} from "../utils/server"
+import {get_todo, delete_todo, update_todo,total_todo_count} from "../utils/server"
 import Form from 'react-bootstrap/Form';
 
 
 const TodoList = () => {
     const [todo_list, setTodoList] = useState([]);
+    const [count_done, setCount] = useState([])
+
 
     useEffect(() => {
         getTodo();
+        total_count()
     }, []);
 
     const handleChange = (e)  =>{
@@ -18,6 +21,7 @@ const TodoList = () => {
     const getTodo = async () => {
         const response = await get_todo()
         setTodoList(response.data);
+        return total_count()
     }
 
     const deleteTodo = async (id) => {
@@ -29,7 +33,12 @@ const TodoList = () => {
         await update_todo(id,{task_status})
         return getTodo()
     }
+    const total_count = async  () =>{
+        const response = await total_todo_count()
+        setCount(response.data)
+        return response.data
 
+    }
 
     return (
         <div>
@@ -39,7 +48,7 @@ const TodoList = () => {
                     <th>No</th>
                     <th>TODO</th>
                     <th>TODO Description</th>
-                    <th>Done</th>
+                    <th>Done <b>({count_done})</b></th>
                     <th>Actions</th>
                 </tr>
                 </thead>

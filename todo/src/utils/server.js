@@ -15,3 +15,7 @@ export function delete_todo(id){
 export function update_todo(id,task_status){
     return http.put(`/${id}`,task_status)
 }
+
+export function total_todo_count(){
+    return http.get("/get_count")
+}
