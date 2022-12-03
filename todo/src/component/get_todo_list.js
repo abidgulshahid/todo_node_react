@@ -13,7 +13,7 @@ const TodoList = () => {
         total_count()
     }, []);
 
-    const handleChange = (e)  =>{
+    const handleChange = (e) => {
         let isChecked = e.target.checked;
         return isChecked
     }
@@ -29,11 +29,11 @@ const TodoList = () => {
         return getTodo();
     }
 
-    const updateTodo = async (id,task_status) => {
-        await update_todo(id,{task_status})
+    const updateTodo = async (id, task_status) => {
+        await update_todo(id, {task_status})
         return getTodo()
     }
-    const total_count = async  () =>{
+    const total_count = async () => {
         const response = await total_todo_count()
         setCount(response.data)
         return response.data
@@ -59,12 +59,12 @@ const TodoList = () => {
                         <td>{todos.task_name}</td>
                         <td>{todos.task_description}</td>
                         <td>
-                            <Form >
+                            <Form>
                                 <Form.Check
                                     id={todos._id}
                                     checked={todos.task_status}
                                     value={todos.task_status}
-                                    onChange={(e) => updateTodo(todos._id,handleChange(e))}
+                                    onChange={(e) => updateTodo(todos._id, handleChange(e))}
                                 />
                             </Form>
 
@@ -72,7 +72,7 @@ const TodoList = () => {
                         <td>
 
                             <button onClick={() => deleteTodo(todos._id)}
-                                className="btn btn-danger">Delete
+                                    className="btn btn-danger">Delete
                             </button>
 
                         </td>

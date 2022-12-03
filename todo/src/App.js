@@ -7,7 +7,7 @@ import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import {total_todo_count} from "./utils/server"
+
 
 function App() {
   return (
